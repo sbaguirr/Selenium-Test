@@ -1,5 +1,4 @@
 """Selenium Test"""
-import csv
 from locators import EspolPageLocators
 
 
@@ -24,7 +23,8 @@ class EspolPage:
         """
         faculty_list = self.driver.find_elements_by_xpath(self.faculty_list_xpath)
         ul_list = self.driver.find_elements_by_xpath(self.ul_list_xpath)
-        data = [['career_name_en', 'career_code', 'faculty_name', 'link_to_career_curriculum']]
+        # data = [['career_name_en', 'career_code', 'faculty_name', 'link_to_career_curriculum']]
+        data = []
         for i, faculty in enumerate(faculty_list):
             faculty_name = faculty.text.split("\n")
             li_list = ul_list[i].find_elements_by_xpath(self.li_list_xpath)
@@ -34,14 +34,6 @@ class EspolPage:
                 link = li_item.find_element_by_xpath(self.career_link_xpath).get_attribute("href")
                 career_code = data_li[2]
                 data.append([career_name, career_code, faculty_name[1], link])
-        self.save_csv(data)
+        return data
 
-    @staticmethod
-    def save_csv(data):
-        """
-        This method will create and write data in a csv file
-        """
-        file = open('data.csv', 'w', encoding="utf-8")
-        with file:
-            writer = csv.writer(file)
-            writer.writerows(data)
+
