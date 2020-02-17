@@ -23,7 +23,6 @@ class EspolPage:
         """
         faculty_list = self.driver.find_elements_by_xpath(self.faculty_list_xpath)
         ul_list = self.driver.find_elements_by_xpath(self.ul_list_xpath)
-        # data = [['career_name_en', 'career_code', 'faculty_name', 'link_to_career_curriculum']]
         data = []
         for i, faculty in enumerate(faculty_list):
             faculty_name = faculty.text.split("\n")

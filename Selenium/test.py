@@ -30,9 +30,9 @@ class EspolSearch(unittest.TestCase):
             new_page = BonusPage(self.driver)
             new_page.click_elective_course()
             new_page.click_100_rows()
-            time.sleep(15)   # is necessary to avoid exceptions while the page is loading
+            time.sleep(5)   # is necessary to avoid exceptions while the page is loading
             big_data['ElectiveCourse'].append(new_page.extract_data())
-        File.save_json(big_data)
+            File.save_json(big_data)
 
     def tearDown(self):
         self.driver.close()
